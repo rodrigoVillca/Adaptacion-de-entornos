@@ -1,15 +1,13 @@
-from typing import Union
 from fastapi import FastAPI
 from mqtt import mover_carrito
-app = FastAPI()
 
+app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
-
+    return {"hola": "mundo"}
 
 @app.get("/mover-carrito/")
 def mover():
-    mover_carrito()
-    return {"logre enviar carrito"}
+    response = mover_carrito()
+    return response

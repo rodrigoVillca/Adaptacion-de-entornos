@@ -1,13 +1,19 @@
 import paho.mqtt.client as mqtt
 
 # Configuración del broker Mosquitto (localhost es donde corre Mosquitto)
-broker_address = "localhost"  # Usa la IP de tu broker si no es local
-client = mqtt.Client("FastAPI_server")  # El nombre del cliente es arbitrario
+broker_address = "localhost"  # dirección del broker
+client = mqtt.Client()  # Nombre del cliente
+
+def on_connect(client, userdata, flags, rc):
+    print(f"Conectado con el código de resultado {rc}")
+
+client.on_connect = on_connect
 client.connect(broker_address)
+client.loop_start()  # Comienza el buckle
 
 def mover_carrito():
     """
-    Endpoint para enviar el comando 'movete 1 metro' al carrito.
+    Función para enviar el comando 'movete 1 metro' al carrito.
     """
     topic = "carrito"
     mensaje = "movete 1 metro"
