@@ -9,5 +9,5 @@ def read_root():
 
 @app.get("/mover-carrito/")
 def mover():
-    response = mover_carrito()
-    return response
+    mensaje= mover_carrito()  # Llamar a la función que publica el mensaje
+    return mensaje
